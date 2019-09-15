@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="src/lib/p5.min.js"></script>
+  <style> body {padding: 0; margin: 0;} </style>
+  <link rel="stylesheet" type="text/css" href="style/bar.css">
+  <link rel="stylesheet" type="text/css" href="style/canvas.css">
+  <link href="style/fa.css" rel="stylesheet">
+</head>
+<body>
+  <div id="topbar">
+    <div class="hide top" onclick="hideTopbar()"></div>
+  </div>
+  <div id="toolbar" >
+    <p class="title">TOOLS</p>
+    <div class="row">
+      <div class="item">
+       </div>
+      <div class="item"></div>
+    </div>
+    <div class="row">
+      <div class="item">
+       </div>
+      <div class="item"></div>
+    </div>
+    <div class="title">
+      <p></p>
+    </div>
+    <div class="hide left" onclick="hideToolbar()">
+    </div>
+  </div>
+  <div id="canvas">
+    <div id="sketch"></div>
+  </div>
+</body>
+<script language="javascript" type="text/javascript" src="src/paint.js"></script>
+<script language="javascript" type="text/javascript" src="src/dom.js"></script>
+</html>
