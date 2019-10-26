@@ -4,12 +4,12 @@ function hideToolbar(val = "100px") {
   if (toolbar.style.width == "0px" || toolbar.style.width == 0)
   {
     toolbar.style.width = val;
-    for(child of allChildren)
+    for(let child of allChildren)
       child.style.display = "block"
   }
   else{
     toolbar.style.width = 0;
-    for(child of allChildren)
+    for(let child of allChildren)
       if(!child.attributes.class.nodeValue.includes("hide"))
         child.style.display = "none"
   }
