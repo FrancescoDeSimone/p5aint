@@ -1,18 +1,18 @@
+p5.disableFriendlyErrors = true;
 const paint = new p5(canvas => {
   canvas.sketch = {};
   canvas.preload = () => {
-    document.oncontextmenu = () => {
-      return false;
-    };
+    document.oncontextmenu = () => false;
+    canvas.drawBrush = () => {};
   };
 
   canvas.setup = () => {
-    canvas.createCanvas(canvas.windowWidth, canvas.windowHeight);
+    canvas.createCanvas(canvas.windowWidth, canvas.windowHeight, canvas.P3D);
     canvas.sketch = canvas.createGraphics(
       canvas.windowWidth,
       canvas.windowHeight
     );
-    canvas.sketch.background(255);
+    canvas.sketch.background(canvas.color(255, 255, 255));
     canvas.sketch.sketchScale = 0.9;
     canvas.sketch.sketchX =
       (canvas.windowWidth - canvas.sketch.width * canvas.sketch.sketchScale) /
@@ -23,6 +23,7 @@ const paint = new p5(canvas => {
     canvas.sketch.brushSize = 10;
     canvas.sketch.brushStrokeColor = canvas.color(0, 0, 0);
     canvas.sketch.brushFillColor = canvas.color(0, 0, 0);
+    canvas.cursor(paint.MOVE);
     canvas.sketch.noLoop();
     canvas.noLoop();
   };
@@ -31,6 +32,8 @@ const paint = new p5(canvas => {
     canvas.background(canvas.color(105, 105, 105));
     canvas.scale(canvas.sketch.sketchScale);
     canvas.image(canvas.sketch, canvas.sketch.sketchX, canvas.sketch.sketchY);
+    canvas.drawBrush();
+    console.log("Draw");
   };
 
   canvas.mouseDragged = mouseEvent => {
@@ -40,6 +43,15 @@ const paint = new p5(canvas => {
   canvas.mousePressed = mouseEvent => {
     canvas.loop();
     if (inSketch() && mouseEvent.target.id === "defaultCanvas0") sketch.click();
+  };
+
+  canvas.mouseMoved = mouseEvent => {
+    canvas.loop();
+    if (
+      Math.abs(canvas.winMouseX - canvas.pwinMouseX) < 3 &&
+      Math.abs(canvas.winMouseY - canvas.pwinMouseY) < 3
+    )
+      canvas.noLoop();
   };
 
   canvas.mouseReleased = canvas.noLoop;
@@ -55,41 +67,39 @@ const paint = new p5(canvas => {
       canvas.sketch.sketchY + canvas.sketch.height * canvas.sketch.sketchScale;
 }, "canvas");
 
-const relativeX = () =>
-  paint.mouseX / paint.sketch.sketchScale - paint.sketch.sketchX;
-const relativeY = () =>
-  paint.mouseY / paint.sketch.sketchScale - paint.sketch.sketchY;
-const relativePX = () =>
-  paint.pmouseX / paint.sketch.sketchScale - paint.sketch.sketchX;
-const relativePY = () =>
-  paint.pmouseY / paint.sketch.sketchScale - paint.sketch.sketchY;
+const relativeX = () => sketchMouseX() - paint.sketch.sketchX;
+const relativeY = () => sketchMouseY() - paint.sketch.sketchY;
+const relativePX = () => sketchMouseX(paint.pmouseX) - paint.sketch.sketchX;
+const relativePY = () => sketchMouseY(paint.pmouseY) - paint.sketch.sketchY;
 
-const drawAction = tool => {
+const drawAction = (tool, icon = defaultBrushIcon) => {
+  paint.drawBrush = icon;
   sketch.draw = tool;
   sketch.click = () => {};
 };
 
-const clickAction = tool => {
+const clickAction = (tool, icon = defaultBrushIcon) => {
+  paint.drawBrush = icon;
   sketch.draw = () => {};
   sketch.click = tool;
 };
 
-const sketchBrushColor = color => {
-  return color != undefined
+const sketchBrushColor = color =>
+  color != undefined
     ? (paint.sketch.brushStrokeColor = color)
     : paint.sketch.brushStrokeColor;
-};
 
-const sketchFillColor = color => {
-  return color != undefined
+const sketchFillColor = color =>
+  color != undefined
     ? (paint.sketch.brushFillColor = color)
     : paint.sketch.brushFillColor;
-};
 
-const sketchBrushSize = size => {
-  return size != undefined
-    ? (paint.sketch.brushSize = size)
-    : paint.sketch.brushSize;
-};
+const sketchBrushSize = size =>
+  size != undefined ? (paint.sketch.brushSize = size) : paint.sketch.brushSize;
+
+const sketchMouseX = (mouseX = paint.mouseX) =>
+  mouseX / paint.sketch.sketchScale;
+const sketchMouseY = (mouseY = paint.mouseY) =>
+  mouseY / paint.sketch.sketchScale;
 
 drawAction(move);
