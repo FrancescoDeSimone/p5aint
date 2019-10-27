@@ -23,31 +23,25 @@
   <div id="toolbar">
     <p class="title">TOOLS</p>
     <div class="row">
-      <div class="item" onclick="sketch.draw = pen">
+      <div class="item" onclick="drawAction(pen)">
         <img class="item-icon" src="src/img/pen.svg">
       </div>
-      <div class="item" onclick="sketch.draw = eraser">
+      <div class="item" onclick="drawAction(eraser)">
         <img class="item-icon" src="src/img/eraser.svg">
       </div>
     </div>
     <div class="row">
-      <div class="item" onclick="sketch.draw = move">
+      <div class="item" onclick="drawAction(move)">
         <img class="item-icon" src="src/img/move.svg">
       </div>
-      <div class="item" onclick="sketch.draw = scissors">
-        <img class="item-icon" src="src/img/scissors.svg">
+      <div class="item" onclick="clickAction(zoom)">
+        <img class="item-icon" src="src/img/zoom.svg">
       </div>
     </div>
     <div class="row">
       <div class="item" onclick="sketch.draw = circle">
-        <img class="item-icon" src="src/img/circle.svg">
+        <img class="item-icon" src="src/img/scissors.svg">
       </div>
-      <div class="item" onclick="sketch.draw = rectangle">
-        <img class="item-icon" src="src/img/square.svg">
-      </div>
-    </div>
-    <div class="title">
-      <p></p>
     </div>
     <div class="hide left" onclick="hideToolbar()">
     </div>
