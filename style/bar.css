@@ -1,76 +1,150 @@
-#topbar,#toolbar{
-  margin: auto;
-  position: absolute;
-  background: lightslategray;
-  box-shadow: 2px 4px 19px 0px rgba(0,0,0,0.75);
-}
+#topbar,
 #toolbar {
-  width: 0;
-  height: 60%;
-  top: 0; bottom: 0;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+    margin: auto;
+    position: absolute;
+    background: lightslategray;
+    box-shadow: 2px 4px 19px 0px rgba(0, 0, 0, 0.75);
+}
+
+#toolbar {
+    width: 0;
+    height: 60%;
+    top: 0;
+    bottom: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    animation-play-state: "paused";
+    animation-duration: 0.1s;
+}
+
+@keyframes closeToolBar {
+    from {
+        width: 100px;
+    }
+    to {
+        width: 0px;
+    }
+}
+
+@keyframes openToolBar {
+    from {
+        width: 0px;
+    }
+    to {
+        width: 100px;
+    }
 }
 
 #topbar {
-  width: 80%;
-  height: 0px;
-  left: 0; right: 0;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+    display: flex;
+    width: 80%;
+    height: 0px;
+    left: 0;
+    right: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    animation-play-state: "paused";
+    animation-duration: 0.1s;
+}
+
+@keyframes closeTopBar {
+    from {
+        height: 100px;
+    }
+    to {
+        height: 0px;
+    }
+}
+
+@keyframes openTopBar {
+    from {
+        height: 0px;
+    }
+    to {
+        height: 100px;
+    }
 }
 
 .hide:before {
- content: ' ';
-  position: absolute;
-  margin: auto;
-  border: 25px solid;
+    content: ' ';
+    position: absolute;
+    margin: auto;
+    border: 25px solid;
 }
 
-.top:before{
-  border-color: lightslategray transparent transparent transparent;
-  left: 0;
-  right: 0;
-  width: 20%;
-  top: 100%;
+.top:before {
+    border-color: lightslategray transparent transparent transparent;
+    left: 0;
+    right: 0;
+    width: 20%;
+    top: 100%;
 }
 
-.left:before{
-  top: 0;
-  bottom: 0;
-  left: 100%;
-  height: 20%;
-  border-color: transparent transparent transparent lightslategray;
+.left:before {
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    height: 20%;
+    border-color: transparent transparent transparent lightslategray;
 }
 
-.title{
-  display: none;
-  align-content: center;
-  text-align: center;
-  width: 100%;
-  font-size: smaller;
-  margin-top: 10px;
-  color: lightsteelblue;
+.title {
+    display: none;
+    align-content: center;
+    text-align: center;
+    width: 100%;
+    font-size: smaller;
+    margin-top: 10px;
+    color: lightsteelblue;
 }
 
-.item{
-  display: none;
-  width: 50%;
-  height: 100%;  
-  margin-left: 5px;
+.item {
+    display: none;
+    width: 50%;
+    height: 100%;
+    margin-left: 5px;
+    border: 1px solid black;
 }
 
-.item-icon{
-  max-width: 85%;
-  max-height: 85%;
-  display: flex;
-  justify-content: center;
-  margin: 5px;
+.option {
+    display: none;
+    height: 100%;
+    margin-left: 5px;
+    border: 1px solid black;
 }
 
-.row{
-  margin: 5px;
-  display: flex !important;
-  flex-direction: row;
-  height: 40px;
+.item-icon {
+    max-width: 85%;
+    max-height: 85%;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+.row {
+    margin: 5px;
+    display: flex !important;
+    flex-direction: row;
+    height: 40px;
+}
+
+.column {
+    margin: 5px;
+    display: flex !important;
+    flex-direction: column;
+    height: 70%;
+    width: 100%;
+    max-width: 80px;
+}
+
+.leftTopBar {
+    display: flex !important;
+    flex-direction: row;
+    width: 100%;
+}
+
+.rightTopBar {
+    display: flex !important;
+    flex-direction: row-reverse;
+    width: 100%;
 }
