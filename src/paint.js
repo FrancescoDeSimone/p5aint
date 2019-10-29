@@ -24,8 +24,10 @@ const paint = new p5(canvas => {
     canvas.sketch.brushStrokeColor = canvas.color(0, 0, 0);
     canvas.sketch.brushFillColor = canvas.color(0, 0, 0);
     canvas.cursor(paint.MOVE);
-    canvas.sketch.noLoop();
-    canvas.noLoop();
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      canvas.sketch.noLoop();
+      canvas.noLoop();
+    }
     canvas.sketch.strokeJoin(canvas.ROUND);
   };
 
@@ -37,13 +39,15 @@ const paint = new p5(canvas => {
     if (
       Math.abs(canvas.winMouseX - canvas.pwinMouseX) < 3 &&
       Math.abs(canvas.winMouseY - canvas.pwinMouseY) < 3 &&
-      !canvas.mouseIsPressed
+      !canvas.mouseIsPressed &&
+      !(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent))
     )
       canvas.noLoop();
   };
 
   canvas.mouseDragged = mouseEvent => {
-    if (canvas.mouseIsPressed &&
+    if (
+      canvas.mouseIsPressed &&
       inSketch() &&
       (mouseEvent.target.id === "defaultCanvas0" ||
         (canvas.startCanvas === "defaultCanvas0" && canvas.mouseIsPressed))
@@ -58,8 +62,6 @@ const paint = new p5(canvas => {
   };
 
   canvas.mouseMoved = canvas.loop;
-
-//   canvas.mouseReleased = canvas.noLoop;
   canvas.windowResized = () =>
     canvas.resizeCanvas(canvas.windowWidth, canvas.windowHeight);
 
