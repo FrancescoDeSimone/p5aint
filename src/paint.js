@@ -3,7 +3,7 @@ const paint = new p5(canvas => {
     canvas.sketch = {};
     canvas.preload = () => {
         document.oncontextmenu = () => false;
-        canvas.drawBrush = () => {};
+        canvas.drawBrush = () => { };
     };
 
     canvas.setup = () => {
@@ -26,6 +26,7 @@ const paint = new p5(canvas => {
         canvas.cursor(paint.MOVE);
         canvas.sketch.noLoop();
         canvas.noLoop();
+        canvas.sketch.strokeJoin(canvas.ROUND);
     };
 
     canvas.draw = () => {
@@ -39,7 +40,7 @@ const paint = new p5(canvas => {
             !canvas.mouseIsPressed
         )
             canvas.noLoop();
-        console.log("Draw");
+        console.log("DRAW")
     };
 
     canvas.mouseDragged = mouseEvent => {
@@ -75,24 +76,24 @@ const relativePY = () => sketchMouseY(paint.pmouseY) - paint.sketch.sketchY;
 const drawAction = (tool, icon = defaultBrushIcon) => {
     paint.drawBrush = icon;
     sketch.draw = tool;
-    sketch.click = () => {};
+    sketch.click = () => { };
 };
 
 const clickAction = (tool, icon = defaultBrushIcon) => {
     paint.drawBrush = icon;
-    sketch.draw = () => {};
+    sketch.draw = () => { };
     sketch.click = tool;
 };
 
 const sketchBrushColor = color =>
     color != undefined ?
-    (paint.sketch.brushStrokeColor = color) :
-    paint.sketch.brushStrokeColor;
+        (paint.sketch.brushStrokeColor = color) :
+        paint.sketch.brushStrokeColor;
 
 const sketchFillColor = color =>
     color != undefined ?
-    (paint.sketch.brushFillColor = color) :
-    paint.sketch.brushFillColor;
+        (paint.sketch.brushFillColor = color) :
+        paint.sketch.brushFillColor;
 
 const sketchBrushSize = size =>
     size != undefined ? (paint.sketch.brushSize = size) : paint.sketch.brushSize;

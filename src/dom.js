@@ -36,3 +36,7 @@ function hideTopbar(val = "75px") {
                 child.style.display = "none";
     }
 }
+
+window.onload = () => document.getElementById("sizeSelector")
+                        .insertAdjacentHTML("afterbegin",
+                         [...Array(95).keys()].flatMap(x => `<option ${(x+5)==sketchBrushSize()?"selected=\"selected\"":""} onclick="sketchBrushSize(${(x+5)})">${(x+5)}</option>`).toString());

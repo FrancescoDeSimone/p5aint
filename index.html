@@ -2,82 +2,91 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="src/lib/p5.min.js"></script>
-  <style>
-    body {
-      padding: 0;
-      margin: 0;
-    }
-  </style>
-  <link rel="stylesheet" type="text/css" href="style/bar.css">
-  <link rel="stylesheet" type="text/css" href="style/canvas.css">
-  <link href="style/fa.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="src/lib/p5.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="style/bar.css">
+    <link rel="stylesheet" type="text/css" href="style/canvas.css">
+    <link href="style/fa.css" rel="stylesheet">
 </head>
 
 <body>
-  <div id="topbar">
-    <div class="leftTopBar">
-        <div class="column">
-            <div class="option">
+    <div id="topbar">
+        <div class="leftTopBar">
+            <div class="column">
+                <div class="option">
+                </div>
             </div>
-          </div>
-          <div class="column">
-            <div class="option">
+            <div class="column">
+                <div class="option">
+                </div>
             </div>
-          </div>
-          <div class="column">
-            <div class="option">
+            <div class="column">
+                <div class="option">
+                </div>
             </div>
-          </div>
-    </div>
-    <div class="rightTopBar">
-        <div class="column">
-            <div class="option">
+        </div>
+        <div class="rightTopBar">
+            <div class="column">
+                <div class="option">
+                    <select id="sizeSelector"></select>
+                </div>
             </div>
-          </div>
-    
-        <div class="column">
-            <div class="option">
-            </div>
-          </div>
-    </div>
 
-    
-    <div class="hide top" onclick="hideTopbar()"></div>
-  </div>
-  <div id="toolbar">
-    <p class="title">TOOLS</p>
-    <div class="row">
-      <div class="item" onclick="drawAction(pen,penBrushIcon)">
-        <img class="item-icon" src="src/img/pen.svg">
-      </div>
-      <div class="item" onclick="drawAction(eraser,eraserBrushIcon)">
-        <img class="item-icon" src="src/img/eraser.svg">
-      </div>
+            <div class="column">
+                <div class="option">
+                    <section class="container">
+                        <button class="pickr">
+                    </section>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="hide top" onclick="hideTopbar()"></div>
     </div>
-    <div class="row">
-      <div class="item" onclick="drawAction(move,moveBrushIcon)">
-        <img class="item-icon" src="src/img/move.svg">
-      </div>
-      <div class="item" onclick="clickAction(zoom)">
-        <img class="item-icon" src="src/img/zoom.svg">
-      </div>
+    <div id="toolbar">
+        <p class="title">TOOLS</p>
+        <div class="row">
+            <div class="item" onclick="drawAction(pen,penBrushIcon)">
+                <img class="item-icon" src="style/img/pen.svg">
+            </div>
+            <div class="item" onclick="drawAction(eraser,eraserBrushIcon)">
+                <img class="item-icon" src="style/img/eraser.svg">
+            </div>
+        </div>
+        <div class="row">
+            <div class="item" onclick="drawAction(move,moveBrushIcon)">
+                <img class="item-icon" src="style/img/move.svg">
+            </div>
+            <div class="item" onclick="clickAction(zoom)">
+                <img class="item-icon" src="style/img/zoom.svg">
+            </div>
+        </div>
+        <div class="row">
+            <div class="item" onclick="sketch.draw = circle">
+                <img class="item-icon" src="style/img/scissors.svg">
+            </div>
+        </div>
+        <div class="hide left" onclick="hideToolbar()">
+        </div>
     </div>
-    <div class="row">
-      <div class="item" onclick="sketch.draw = circle">
-        <img class="item-icon" src="src/img/scissors.svg">
-      </div>
+    <div id="canvas">
+        <div id="sketch"></div>
     </div>
-    <div class="hide left" onclick="hideToolbar()">
-    </div>
-  </div>
-  <div id="canvas">
-    <div id="sketch"></div>
-  </div>
 </body>
-<script language="javascript" type="text/javascript" src="src/tools.js"></script>
+<script language="javascript" type="text/javascript" src="src/tools/tools.js"></script>
+<script language="javascript" type="text/javascript" src="src/options/pickr.js"></script>
 <script language="javascript" type="text/javascript" src="src/paint.js"></script>
 <script language="javascript" type="text/javascript" src="src/dom.js"></script>
 
