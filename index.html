@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="src/lib/p5.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
-
-    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
+    <link rel="stylesheet" href="lib/style/classic.min.css" />
+    <script src="lib/src/pickr.min.js"></script>
+    <script src="lib/src/p5.min.js"></script>
     <style>
         body {
             padding: 0;
@@ -39,7 +37,7 @@
         <div class="rightTopBar">
             <div class="column">
                 <div class="option">
-                    <select id="sizeSelector"></select>
+                    <select onChange='sketchBrushSize(parseInt(this.value))' id="sizeSelector"></select>
                 </div>
             </div>
 
@@ -85,7 +83,10 @@
         <div id="sketch"></div>
     </div>
 </body>
-<script language="javascript" type="text/javascript" src="src/tools/tools.js"></script>
+<script language="javascript" type="text/javascript" src="src/tools/pen.js"></script>
+<script language="javascript" type="text/javascript" src="src/tools/move.js"></script>
+<script language="javascript" type="text/javascript" src="src/tools/eraser.js"></script>
+<script language="javascript" type="text/javascript" src="src/tools/zoom.js"></script>
 <script language="javascript" type="text/javascript" src="src/options/pickr.js"></script>
 <script language="javascript" type="text/javascript" src="src/paint.js"></script>
 <script language="javascript" type="text/javascript" src="src/dom.js"></script>
