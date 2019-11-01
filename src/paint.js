@@ -1,3 +1,4 @@
+'use strict';
 p5.disableFriendlyErrors = true;
 const paint = new p5(canvas => {
   canvas.sketch = {};
@@ -69,9 +70,9 @@ const paint = new p5(canvas => {
     canvas.mouseX >= canvas.sketch.sketchX * canvas.sketch.sketchScale &&
     canvas.mouseY >= canvas.sketch.sketchY * canvas.sketch.sketchScale &&
     canvas.mouseX <
-      canvas.sketch.sketchX + canvas.sketch.width * canvas.sketch.sketchScale &&
+      (canvas.sketch.sketchX + canvas.sketch.width) * canvas.sketch.sketchScale &&
     canvas.mouseY <
-      canvas.sketch.sketchY + canvas.sketch.height * canvas.sketch.sketchScale;
+      (canvas.sketch.sketchY + canvas.sketch.height) * canvas.sketch.sketchScale;
 }, "canvas");
 
 const relativeX = () => sketchMouseX() - paint.sketch.sketchX;
@@ -82,7 +83,7 @@ const relativePY = () => sketchMouseY(paint.pmouseY) - paint.sketch.sketchY;
 const drawAction = (tool, icon = defaultBrushIcon) => {
   paint.drawBrush = icon;
   sketch.draw = tool;
-  sketch.click = () => {};
+  sketch.click = tool;
 };
 
 const clickAction = (tool, icon = defaultBrushIcon) => {

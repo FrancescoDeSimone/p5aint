@@ -1,3 +1,4 @@
+'use strict';
 const getComplementary = value => {
   if (value.levels.slice(0, 3).every(item => item == 0))
     return paint.color(255, 255, 255);

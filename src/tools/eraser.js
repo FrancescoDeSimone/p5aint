@@ -1,3 +1,5 @@
+'use strict';
+
 const eraser = () => {
   paint.sketch.push();
   paint.sketch.stroke(255);

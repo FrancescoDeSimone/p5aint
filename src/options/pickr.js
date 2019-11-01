@@ -1,3 +1,4 @@
+'use strict';
 const inputElement = document.querySelector('.pickr');
 
 const pickr = new Pickr({
