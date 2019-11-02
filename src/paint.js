@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 p5.disableFriendlyErrors = true;
 const paint = new p5(canvas => {
   canvas.sketch = {};
@@ -25,15 +25,15 @@ const paint = new p5(canvas => {
     canvas.sketch.brushStrokeColor = canvas.color(0, 0, 0);
     canvas.sketch.brushFillColor = canvas.color(0, 0, 0);
     canvas.cursor(paint.MOVE);
+    canvas.sketch.noLoop();
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-      canvas.sketch.noLoop();
       canvas.noLoop();
     }
     canvas.sketch.strokeJoin(canvas.ROUND);
   };
 
   canvas.draw = () => {
-    canvas.background(canvas.color(105, 105, 105));
+    canvas.background(canvas.color((20, 29, 38)));
     canvas.scale(canvas.sketch.sketchScale);
     canvas.image(canvas.sketch, canvas.sketch.sketchX, canvas.sketch.sketchY);
     canvas.drawBrush();
@@ -41,9 +41,10 @@ const paint = new p5(canvas => {
       Math.abs(canvas.winMouseX - canvas.pwinMouseX) < 3 &&
       Math.abs(canvas.winMouseY - canvas.pwinMouseY) < 3 &&
       !canvas.mouseIsPressed &&
-      !(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent))
+      !/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
     )
       canvas.noLoop();
+    console.log("draw");
   };
 
   canvas.mouseDragged = mouseEvent => {
@@ -70,9 +71,11 @@ const paint = new p5(canvas => {
     canvas.mouseX >= canvas.sketch.sketchX * canvas.sketch.sketchScale &&
     canvas.mouseY >= canvas.sketch.sketchY * canvas.sketch.sketchScale &&
     canvas.mouseX <
-      (canvas.sketch.sketchX + canvas.sketch.width) * canvas.sketch.sketchScale &&
+      (canvas.sketch.sketchX + canvas.sketch.width) *
+        canvas.sketch.sketchScale &&
     canvas.mouseY <
-      (canvas.sketch.sketchY + canvas.sketch.height) * canvas.sketch.sketchScale;
+      (canvas.sketch.sketchY + canvas.sketch.height) *
+        canvas.sketch.sketchScale;
 }, "canvas");
 
 const relativeX = () => sketchMouseX() - paint.sketch.sketchX;
@@ -107,6 +110,7 @@ const sketchBrushSize = size =>
 
 const sketchMouseX = (mouseX = paint.mouseX) =>
   mouseX / paint.sketch.sketchScale;
+
 const sketchMouseY = (mouseY = paint.mouseY) =>
   mouseY / paint.sketch.sketchScale;
 

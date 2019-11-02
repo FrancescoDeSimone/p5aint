@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 const getComplementary = value => {
   if (value.levels.slice(0, 3).every(item => item == 0))
     return paint.color(255, 255, 255);
@@ -25,7 +25,9 @@ const penBrushIcon = () => {
   paint.noCursor();
   paint.fill(sketchBrushColor());
   paint.strokeWeight(sketchBrushSize() * 0.1);
-  paint.stroke(getComplementary(sketchBrushColor()));
+  paint.stroke(
+    getComplementary(paint.color(paint.sketch.get(relativeX(), relativeY())))
+  );
   paint.circle(sketchMouseX(), sketchMouseY(), sketchBrushSize());
   paint.pop();
 };
